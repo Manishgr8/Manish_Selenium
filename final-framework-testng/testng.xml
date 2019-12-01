@@ -3,8 +3,16 @@
 
 <suite name = "Sample test Suite">
    <test name = "Sample test">
-      <classes>
-         <class name = "com.training.sanity.tests.AssignmentTest" />
-      </classes>
+   	<groups>
+   		<run>
+   			<include name="scenario1"> </include>
+   			<include name="scenario2"> </include>
+   			<include name="scenario3"> </include>
+   		</run>
+   	</groups>
+    <classes>
+         <class name = "com.training.sanity.tests.Assignment2aTest" />
+         <class name = "com.training.sanity.tests.Assignment2bTest" />
+    </classes>
    </test>
 </suite>	

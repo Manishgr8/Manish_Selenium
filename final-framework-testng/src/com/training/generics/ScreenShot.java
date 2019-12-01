@@ -30,8 +30,8 @@ public class ScreenShot {
 	public void captureScreenShot(){
 		
 		// to be changed 
-		String path = "C:\\Users\\Naveen\\Desktop\\screenshots\\";
-		String fileName ="";
+		String path =  System.getProperty("user.dir")+"\\Stepwise Screenshot\\";
+		
 
 		GregorianCalendar calendar = new GregorianCalendar(); 
 		
@@ -40,7 +40,7 @@ public class ScreenShot {
 		int second = calendar.get(Calendar.SECOND); 
 		
 		
-		fileName = new Integer(date).toString() + "-" + new Integer(minute).toString() +"-" +
+		String fileName = new Integer(date).toString() + "-" + new Integer(minute).toString() +"-" +
 					new Integer(second).toString() +".png"; 
 		
 		// 1. create file 

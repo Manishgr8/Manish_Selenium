@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPagePOM {
 	private WebDriver driver; 
+	private HomePagePOM home1;
 	
 	public LoginPagePOM(WebDriver driver) {
 		this.driver = driver; 
@@ -48,4 +49,19 @@ public class LoginPagePOM {
 	public void ClickLink() {
 		this.lostLink.click();
 	}
+	
+	public void AdminLogin(String name, String pwd)
+	{
+		home1= new HomePagePOM(driver);
+		// Clicking on "LOG IN/REGISTER" button
+		home1.ClickSigninLink();
+
+		// Entering username and password
+		this.sendUserName(name);
+				this.sendPassword(pwd);
+
+		// Clicking on "Sign In" button
+		this.clickLoginBtn();
+	}
+	
 }

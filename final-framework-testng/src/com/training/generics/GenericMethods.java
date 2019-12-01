@@ -11,119 +11,123 @@ import org.testng.asserts.SoftAssert;
 /**
  * 
  * @author Naveen
- * @see this class will help when you want to do custom business logic, since  in POM we dont do 
- * 			dynamic elements available, when you want to iterate the table/accordion etc 
- * @since 17-Dec-2018 
+ * @see this class will help when you want to do custom business logic, since in
+ *      POM we dont do dynamic elements available, when you want to iterate the
+ *      table/accordion etc
+ * @since 17-Dec-2018
  */
 public class GenericMethods {
-	WebDriver driver ; 
-	
-	
-	public GenericMethods(WebDriver driver){
+	WebDriver driver;
+
+	public GenericMethods(WebDriver driver) {
 		this.driver = driver;
 	}
-	
+
 	/**
 	 * 
-	 * @param locator 
+	 * @param locator
 	 * @param type
 	 * @see type is id, name, xpath, text, partialtext
-	 * @see locator will be the element to be found on DOM 
-	 * @return  WebElement
-	 * this method shall give provided it has single enty in the DOM
+	 * @see locator will be the element to be found on DOM
+	 * @return WebElement this method shall give provided it has single enty in the
+	 *         DOM
 	 */
-	public WebElement getElement(String locator, String type){
-		WebElement element  = null;
+	public WebElement getElement(String locator, String type) {
+		WebElement element = null;
 		type = type.toLowerCase();
-		
-		if(type.equals("id")){
-			element  =  driver.findElement(By.id(locator));
-		} else if(type.equals("css")){
+
+		if (type.equals("id")) {
+			element = driver.findElement(By.id(locator));
+		} else if (type.equals("css")) {
 			element = driver.findElement(By.cssSelector(locator));
-		}else if (type.equals("name")){
-			element  = driver.findElement(By.name(locator));
-		}else if(type.equals("xpath")){
+		} else if (type.equals("name")) {
+			element = driver.findElement(By.name(locator));
+		} else if (type.equals("xpath")) {
 			element = driver.findElement(By.xpath(locator));
-		}else if(type.equals("partialLinkText")){
+		} else if (type.equals("partialLinkText")) {
 			element = driver.findElement(By.partialLinkText(locator));
-		}else if(type.equals("linkText")){
+		} else if (type.equals("linkText")) {
 			element = driver.findElement(By.linkText(locator));
 		}
-		if(checkSingleEntry(locator, type)){
+		if (checkSingleEntry(locator, type)) {
 			System.out.println("Element Found and Returned");
 			return element;
-		}	
+		}
 		System.out.println("Sorry Element not found, so not returned...");
 		return null;
 
-
 	}
-	
-	
-	// shall give if it has multiple entries as a list in DOM 
-	
-	public List<WebElement> getElementsAsList(String locator, String type){
+
+	// shall give if it has multiple entries as a list in DOM
+
+	public List<WebElement> getElementsAsList(String locator, String type) {
 		type = type.toLowerCase();
-		if(type.equals("id")){
+		if (type.equals("id")) {
 			return driver.findElements(By.id(locator));
-		}else if(type.equals("name")){
+		} else if (type.equals("name")) {
 			return driver.findElements(By.name(locator));
-		}else if(type.equals("xpath")){
+		} else if (type.equals("xpath")) {
 			return driver.findElements(By.xpath(locator));
-		}else if(type.equals("class")){
+		} else if (type.equals("class")) {
 			return driver.findElements(By.className(locator));
-		}// other TODO 
+		} // other TODO
 		return null;
 	}
-	
-	// return true if element exists 
-	// this method works for us when we have more than 1 element 
-	// to be found for 
-	public boolean isElementFound(String locator, String type){
-		return getElementsAsList(locator, type).size()>0;
+
+	// return true if element exists
+	// this method works for us when we have more than 1 element
+	// to be found for
+	public boolean isElementFound(String locator, String type) {
+		return getElementsAsList(locator, type).size() > 0;
 	}
-	
-	// this method gives true only where there is an single entry 
-	// in the DOM 
-	public boolean checkSingleEntry(String locator, String type){
-		return getElementsAsList(locator, type).size() ==1;
+
+	// this method gives true only where there is an single entry
+	// in the DOM
+	public boolean checkSingleEntry(String locator, String type) {
+		return getElementsAsList(locator, type).size() == 1;
 	}
-	
-	
-	public void AssertTitle(String expectedTitle)
-	{
+
+	public void AssertTitle(String expectedTitle) {
 		String actualTitle = driver.getTitle();
 		Assert.assertEquals(actualTitle, expectedTitle, "Assertion has Failed and hence the Test Case");
-		
+
 	}
-	
-	public void AssertText(String expectedText, WebElement element)
-	{
+
+	public void AssertText(String expectedText, WebElement element) {
 		String actualText = element.getText();
 		Assert.assertEquals(actualText, expectedText, "Assertion has Failed and hence the Test Case");
-		
+
 	}
-	
-	public void AssertAttributeValue(String expectedAttrValue, String attributeName, WebElement element)
-	{
-		String actualAttrValue=element.getAttribute(attributeName);
+
+	public void AssertAttributeValue(String expectedAttrValue, String attributeName, WebElement element) {
+		String actualAttrValue = element.getAttribute(attributeName);
 		Assert.assertEquals(actualAttrValue, expectedAttrValue, "Assertion has Failed and hence the Test Case");
-		
+
 	}
-	
-	public void AssertUrl(String expectedUrl)
-	{
-		String actualUrl=driver.getCurrentUrl();
+
+	public void AssertUrl(String expectedUrl) {
+		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl, "Assertion has Failed and hence the Test Case");
-		
+
 	}
-	
-	public void AssertSelected(WebElement element)
-	{
-		boolean actualSelection=element.isSelected();
+
+	public void AssertSelected(WebElement element) {
+		boolean actualSelection = element.isSelected();
 		Assert.assertTrue(actualSelection, "Assertion has Failed and hence the Test Case");
-		
+
 	}
-	
-	
+
+	public void AssertList(List<WebElement> list, String pattern) {
+		for (int i = 0; i < list.size(); i++) {
+			String text = list.get(i).getText();
+			
+			if (text.equalsIgnoreCase(pattern)) {
+				Assert.assertTrue(true);
+				break;
+			} else if (i == (list.size() - 1)) {
+				Assert.assertTrue(false, "Category could not be found");
+			}
+		}
+	}
+
 }
