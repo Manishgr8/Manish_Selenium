@@ -125,7 +125,7 @@ public class GenericMethods {
 				Assert.assertTrue(true);
 				break;
 			} else if (i == (list.size() - 1)) {
-				Assert.assertTrue(false, "Category could not be found");
+				Assert.assertTrue(false, "Assertion fails as webelement could not be found");
 			}
 		}
 	}

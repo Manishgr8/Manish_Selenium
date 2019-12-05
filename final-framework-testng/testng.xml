@@ -11,8 +11,8 @@
    		</run>
    	</groups>
     <classes>
-         <class name = "com.training.sanity.tests.Assignment2aTest" />
-         <class name = "com.training.sanity.tests.Assignment2bTest" />
+         <class name = "com.training.sanity.tests.AssignmentMedium2aTest" />
+         <class name = "com.training.sanity.tests.AssignmentMedium2bTest" />
     </classes>
    </test>
 </suite>	

@@ -33,7 +33,7 @@ import com.training.utility.DriverNames;
 import com.training.pom.CategoryPagePOM;
 import com.training.pom.PostPagePOM;
 
-public class Assignment2aTest {
+public class AssignmentMedium2aTest {
 	private WebDriver driver;
 	private String baseUrl;
 	private HomePagePOM homePage;

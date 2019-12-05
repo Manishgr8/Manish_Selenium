@@ -30,6 +30,17 @@ private WebDriver driver;
 	@FindBy(xpath="//div[@class='wp-menu-name' and text()='Comments ']")
 	private WebElement commentsLink;
 	
+	@FindBy(xpath="//div[@class='wp-menu-name' and text()='Properties']")
+	private WebElement propertiesLink;
+	
+	@FindBy(xpath="//a[@href='edit-tags.php?taxonomy=property_feature&post_type=property' and text()='Features']")
+	private WebElement featuresLink;
+	
+	@FindBy(xpath="//a[@href='post-new.php?post_type=property' and text()='Add New']")
+	private WebElement addNewPropLink;
+	
+	@FindBy(xpath="//a[@class='ab-item' and text()='Log Out']")
+	private WebElement logOutLink;
 	
 	public String GetDashboardText() {
 		return(this.dashText.getText());
@@ -51,5 +62,19 @@ private WebDriver driver;
 		this.commentsLink.click();
 	}
 	
+	public void ClickPropertiesLink() {
+		this.propertiesLink.click();
+	}
 	
+	public void ClickFeaturesLink() {
+		this.featuresLink.click();
+	}
+	
+	public void ClickAddNewPropLink() {
+		this.addNewPropLink.click();
+	}
+	
+	public void ClickLogOutLink() {
+		this.logOutLink.click();
+	}
 }

@@ -14,6 +14,7 @@ public class LoginPagePOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+		
 	@FindBy(id="user_login")
 	private WebElement userName; 
 	
@@ -28,6 +29,10 @@ public class LoginPagePOM {
 	
 	@FindBy(partialLinkText="Lost Your Password")
 	private WebElement lostLink; 
+	
+	@FindBy(xpath="//span[text()='Real Estate']")
+	private WebElement realEstateLink;
+	
 	
 	public void sendUserName(String user) {
 		this.userName.clear();
@@ -50,6 +55,10 @@ public class LoginPagePOM {
 		this.lostLink.click();
 	}
 	
+	public void ClickRealEstLink() {
+		this.realEstateLink.click();
+	}
+	
 	public void AdminLogin(String name, String pwd)
 	{
 		home1= new HomePagePOM(driver);
@@ -58,7 +67,7 @@ public class LoginPagePOM {
 
 		// Entering username and password
 		this.sendUserName(name);
-				this.sendPassword(pwd);
+		this.sendPassword(pwd);
 
 		// Clicking on "Sign In" button
 		this.clickLoginBtn();
